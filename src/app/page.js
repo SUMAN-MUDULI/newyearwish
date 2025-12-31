@@ -11,20 +11,24 @@ export default function Home() {
       "radial-gradient(circle at bottom, #2b1055, #000)";
   }, []);
 
-  const handleShare = () => {
-    if (!yourName || !friendName) {
-      alert("Please enter both names");
-      return;
-    }
+const handleShare = () => {
+  if (!yourName || !friendName) {
+    alert("Please enter both names");
+    return;
+  }
 
-    const url = `https://newyearwishesss.vercel.app/wish?to=${encodeURIComponent(
+  // ✅ CURRENT DOMAIN AUTO-DETECT
+  const baseUrl = window.location.origin;
+
+  const url = `${baseUrl}/wish?to=${encodeURIComponent(
     friendName.trim()
   )}&from=${encodeURIComponent(yourName.trim())}`;
 
-  // ✅ ONLY LINK (no message, no text)
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
   window.location.href = whatsappUrl;
-}
+};
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 text-white">
