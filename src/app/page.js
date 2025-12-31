@@ -17,14 +17,14 @@ export default function Home() {
       return;
     }
 
-    const url = `http://localhost:3000/wish?to=${encodeURIComponent(
-      friendName
-    )}&from=${encodeURIComponent(yourName)}`;
+    const url = `https://newyearwishesss.vercel.app/wish?to=${encodeURIComponent(
+    friendName.trim()
+  )}&from=${encodeURIComponent(yourName.trim())}`;
 
-    // ❌ invisible char REMOVED (this was crashing SSR)
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
-    window.location.href = whatsappUrl;
-  };
+  // ✅ ONLY LINK (no message, no text)
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
+  window.location.href = whatsappUrl;
+}
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 text-white">

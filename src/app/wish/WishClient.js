@@ -15,8 +15,13 @@ export default function WishClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const to = searchParams.get("to");
-  const from = searchParams.get("from");
+const rawTo = searchParams.get("to");
+const rawFrom = searchParams.get("from");
+
+const to = rawTo?.trim();
+const from = rawFrom?.trim();
+
+
 
   const [loading, setLoading] = useState(true);
   const [started, setStarted] = useState(false);
