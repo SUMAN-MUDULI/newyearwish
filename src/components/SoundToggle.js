@@ -8,7 +8,7 @@ export default function SoundToggle({ enabled, onToggle }) {
       bg-white/10 backdrop-blur-md text-white text-sm
       border border-white/20 hover:bg-white/20 transition"
     >
-      {enabled ? "🔊 Sound On" : "🔇 Tap for Sound"}
+      {enabled ? "🔊 Sound On" : "🔇 Sound Off"}
     </button>
   );
 }

@@ -6,10 +6,9 @@ export default function FireworkBurst({ onBoom }) {
   const [particles, setParticles] = useState([]);
 
   useEffect(() => {
-    // 🔊 play sound once (after user tap)
+    // 🔊 Firework sound (only once)
     if (onBoom) onBoom();
 
-    // 🎆 generate particles
     const temp = [];
     for (let i = 0; i < 24; i++) {
       temp.push({
@@ -22,13 +21,13 @@ export default function FireworkBurst({ onBoom }) {
     }
     setParticles(temp);
 
-    // 🧹 auto cleanup after animation
     const timer = setTimeout(() => {
       setParticles([]);
     }, 1400);
 
     return () => clearTimeout(timer);
-  }, [onBoom]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

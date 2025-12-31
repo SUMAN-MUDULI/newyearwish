@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 
 export default function useSound() {
   const [enabled, setEnabled] = useState(false);
@@ -8,7 +8,7 @@ export default function useSound() {
   const fireworkRef = useRef(null);
   const chimeRef = useRef(null);
 
-  const init = () => {
+  const init = useCallback(() => {
     if (!fireworkRef.current) {
       fireworkRef.current = new Audio("/sounds/firework.mp3");
       fireworkRef.current.volume = 0.4;
@@ -17,24 +17,29 @@ export default function useSound() {
       chimeRef.current = new Audio("/sounds/chime.mp3");
       chimeRef.current.volume = 0.3;
     }
-  };
+  }, []);
 
   const toggle = () => {
     init();
     setEnabled((v) => !v);
   };
 
-  const playFirework = () => {
+  const playFirework = useCallback(() => {
     if (!enabled || !fireworkRef.current) return;
     fireworkRef.current.currentTime = 0;
     fireworkRef.current.play().catch(() => {});
-  };
+  }, [enabled]);
 
-  const playChime = () => {
+  const playChime = useCallback(() => {
     if (!enabled || !chimeRef.current) return;
     chimeRef.current.currentTime = 0;
     chimeRef.current.play().catch(() => {});
-  };
+  }, [enabled]);
 
-  return { enabled, toggle, playFirework, playChime };
+  return {
+    enabled,
+    toggle,
+    playFirework,
+    playChime,
+  };
 }

@@ -9,26 +9,23 @@ import FireworkBurst from "../../components/FireworkBurst";
 import SoundToggle from "../../components/SoundToggle";
 import useSound from "../../hooks/useSound";
 import FullBackground from "../../components/FullBackground";
-// import ThemeSwitcher from "../../components/ThemeSwitcher";
 
 export default function WishClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-const rawTo = searchParams.get("to");
-const rawFrom = searchParams.get("from");
+  const rawTo = searchParams.get("to");
+  const rawFrom = searchParams.get("from");
 
-const to = rawTo?.trim();
-const from = rawFrom?.trim();
-
-
+  const to = rawTo?.trim();
+  const from = rawFrom?.trim();
 
   const [loading, setLoading] = useState(true);
   const [started, setStarted] = useState(false);
 
   const { enabled, toggle, playFirework, playChime } = useSound();
 
-  // redirect if params missing
+  // Redirect if params missing
   useEffect(() => {
     if (!to || !from) {
       router.push("/");
@@ -38,26 +35,30 @@ const from = rawFrom?.trim();
     return () => clearTimeout(timer);
   }, [to, from, router]);
 
+  // 🔔 Play chime AFTER user tap + loading finished
+  useEffect(() => {
+    if (started && !loading) {
+      playChime();
+    }
+  }, [started, loading, playChime]);
+
   if (!to || !from) return null;
 
   return (
     <div className="min-h-screen relative bg-black text-white flex items-center justify-center px-4 overflow-hidden">
-      {/* 🌌 Full animated background */}
       <FullBackground />
-
-      {/* 🎆 Festive layer */}
       <FestiveBackground />
 
-      {/* 🎨 Theme switcher (optional) */}
-      {/* <ThemeSwitcher /> */}
-
-      {/* 🔊 Sound Toggle */}
+      {/* 🔊 Sound toggle */}
       <SoundToggle enabled={enabled} onToggle={toggle} />
 
-      {/* 👆 Tap to Start (required for sound) */}
+      {/* 👆 Tap to Start */}
       {!started && (
         <div
-          onClick={() => setStarted(true)}
+          onClick={() => {
+            toggle();       // enable sound
+            setStarted(true);
+          }}
           className="fixed inset-0 z-50 flex items-center justify-center
           bg-black/90 text-white text-xl font-semibold cursor-pointer"
         >
@@ -65,7 +66,6 @@ const from = rawFrom?.trim();
         </div>
       )}
 
-      {/* 🎬 Main Content */}
       <AnimatePresence mode="wait">
         {loading ? (
           <motion.div
@@ -85,38 +85,32 @@ const from = rawFrom?.trim();
             transition={{ duration: 1 }}
             className="text-center space-y-6"
           >
-            {/* 🎉 Name Reveal + Firework */}
+            {/* 🎉 Name */}
             <div className="relative inline-block">
               <motion.h1
-                initial={{ scale: 0.8, opacity: 0 }}
+                initial={{ scale: 0.85, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{
                   duration: 1,
-                  ease: [0.22, 1, 0.36, 1], // Apple-like easing
+                  ease: [0.22, 1, 0.36, 1],
                 }}
                 className="text-4xl font-extrabold tracking-wide firework-glow relative z-10"
               >
                 🎉 {to.toUpperCase()} 🎉
               </motion.h1>
 
-              {/* 🔥 ONE-TIME Firework Burst */}
               {started && <FireworkBurst onBoom={playFirework} />}
             </div>
 
-            {/* ✨ Wish Text */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 1 }}
-              onAnimationStart={() => {
-                if (started) playChime();
-              }}
               className="text-xl"
             >
               Happy New Year 2026 ✨
             </motion.p>
 
-            {/* 💖 From */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -126,7 +120,6 @@ const from = rawFrom?.trim();
               From {from} 💖
             </motion.p>
 
-            {/* 🔁 Share Again */}
             <motion.button
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
