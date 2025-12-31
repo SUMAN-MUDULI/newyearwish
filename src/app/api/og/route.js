@@ -17,71 +17,70 @@ export async function GET(request) {
           justifyContent: "center",
           background:
             "radial-gradient(circle at top, #3a1c71, #000000)",
-          fontFamily: "sans-serif",
-          color: "white",
-          position: "relative",
+          color: "#ffffff",
+          fontFamily: "Arial, Helvetica, sans-serif",
         }}
       >
-        {/* Main Card */}
+        {/* CARD */}
         <div
           style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "64px 80px",
+            borderRadius: "36px",
             background: "rgba(0,0,0,0.6)",
-            borderRadius: "32px",
-            padding: "60px 80px",
-            textAlign: "center",
-            boxShadow: "0 40px 120px rgba(0,0,0,0.6)",
+            boxShadow: "0 40px 120px rgba(0,0,0,0.7)",
+            border: "2px solid rgba(255,255,255,0.15)",
           }}
         >
-          {/* Name */}
-          <div
-            style={{
-              fontSize: 84,
-              fontWeight: 900,
-              letterSpacing: "-1px",
-              marginBottom: 20,
-            }}
-          >
-            🎆 {name}
+          {/* Spark emoji */}
+          <div style={{ display: "flex", fontSize: "42px", marginBottom: "12px" }}>
+            ✨
           </div>
 
-          {/* Emotional line */}
+          {/* NAME */}
           <div
             style={{
-              fontSize: 34,
-              opacity: 0.9,
-              marginBottom: 40,
+              display: "flex",
+              fontSize: "86px",
+              fontWeight: 900,
+              letterSpacing: "-1px",
+              marginBottom: "20px",
+              textShadow: "0 0 30px rgba(255,200,255,0.6)",
+            }}
+          >
+            {name}
+          </div>
+
+          {/* Curiosity line */}
+          <div
+            style={{
+              display: "flex",
+              fontSize: "34px",
+              opacity: 0.92,
+              marginBottom: "36px",
             }}
           >
             Someone made this just for you 😱
           </div>
 
-          {/* Fake CTA Button */}
+          {/* CTA BUTTON */}
           <div
             style={{
-              display: "inline-block",
-              padding: "22px 48px",
+              display: "flex",
+              padding: "22px 56px",
               borderRadius: "999px",
               background:
                 "linear-gradient(90deg, #ff4d6d, #c77dff)",
-              fontSize: 32,
-              fontWeight: 700,
-              boxShadow: "0 10px 40px rgba(199,125,255,0.6)",
+              fontSize: "32px",
+              fontWeight: 800,
+              boxShadow: "0 12px 40px rgba(199,125,255,0.7)",
             }}
           >
             👉 TAP TO OPEN 🎁
           </div>
-        </div>
-
-        {/* Footer hint */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 40,
-            fontSize: 22,
-            opacity: 0.6,
-          }}
-        >
-          New Year Surprise ✨
         </div>
       </div>
     ),
