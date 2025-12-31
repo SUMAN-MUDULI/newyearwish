@@ -15,15 +15,74 @@ export async function GET(request) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0f0c29, #302b63, #24243e)",
+          background:
+            "radial-gradient(circle at top, #3a1c71, #000000)",
+          fontFamily: "sans-serif",
           color: "white",
-          fontSize: 80,
-          fontWeight: 800,
-          textAlign: "center",
-          padding: "40px",
+          position: "relative",
         }}
       >
-        🎆 {name}, this is for YOU 😱
+        {/* Main Card */}
+        <div
+          style={{
+            background: "rgba(0,0,0,0.6)",
+            borderRadius: "32px",
+            padding: "60px 80px",
+            textAlign: "center",
+            boxShadow: "0 40px 120px rgba(0,0,0,0.6)",
+          }}
+        >
+          {/* Name */}
+          <div
+            style={{
+              fontSize: 84,
+              fontWeight: 900,
+              letterSpacing: "-1px",
+              marginBottom: 20,
+            }}
+          >
+            🎆 {name}
+          </div>
+
+          {/* Emotional line */}
+          <div
+            style={{
+              fontSize: 34,
+              opacity: 0.9,
+              marginBottom: 40,
+            }}
+          >
+            Someone made this just for you 😱
+          </div>
+
+          {/* Fake CTA Button */}
+          <div
+            style={{
+              display: "inline-block",
+              padding: "22px 48px",
+              borderRadius: "999px",
+              background:
+                "linear-gradient(90deg, #ff4d6d, #c77dff)",
+              fontSize: 32,
+              fontWeight: 700,
+              boxShadow: "0 10px 40px rgba(199,125,255,0.6)",
+            }}
+          >
+            👉 TAP TO OPEN 🎁
+          </div>
+        </div>
+
+        {/* Footer hint */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 40,
+            fontSize: 22,
+            opacity: 0.6,
+          }}
+        >
+          New Year Surprise ✨
+        </div>
       </div>
     ),
     {

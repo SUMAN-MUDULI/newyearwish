@@ -2,14 +2,25 @@
 
 export default function FestiveBackground() {
   return (
-    <div className="absolute inset-0 -z-10 overflow-hidden festive-bg">
-      {Array.from({ length: 40 }).map((_, i) => (
+    <div className="absolute overflow-hidden festive-bg festive-wrapper">
+      {Array.from({ length: 30 }).map((_, i) => (
         <span
-          key={i}
+          key={`float-${i}`}
+          className="festive-particle"
           style={{
             left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 12}s`,
-            animationDuration: `${10 + Math.random() * 10}s`,
+            animationDelay: `${Math.random() * 10}s`,
+            animationDuration: `${12 + Math.random() * 8}s`,
+          }}
+        />
+      ))}
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div
+          key={`rocket-${i}`}
+          className="firework-rocket"
+          style={{
+            left: `${10 + Math.random() * 80}%`,
+            animationDelay: `${i * 2}s`,
           }}
         />
       ))}

@@ -9,7 +9,9 @@ export async function generateMetadata({ searchParams }) {
       description: "",
       images: [
         {
-          url: `https://newyearwish-kohl.vercel.app/api/og?to=${encodeURIComponent(to)}`,
+          url: `https://newyearwish-kohl.vercel.app/api/og?to=${encodeURIComponent(
+            to
+          )}`,
           width: 1200,
           height: 630,
         },

@@ -1,5 +1,9 @@
 "use client";
 
+// import FestiveBackground from "@/components/FuturisticBackground";
+import FestiveBackground from "@/components/FestiveBackground";
+import BalloonBackground from "@/components/BalloonBackground";
+import FullBackground from '@/components/FullBackground';
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -32,6 +36,8 @@ const handleShare = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 text-white">
+      <FestiveBackground/>
+      {/* <FullBackground/> */}
       <div className="w-full max-w-md bg-white/10 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-white/20">
         <h1 className="text-2xl font-extrabold text-center mb-2">
           🎉 New Year Surprise 🎉
