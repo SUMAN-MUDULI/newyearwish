@@ -2,11 +2,11 @@ export async function generateMetadata({ searchParams }) {
   const to = searchParams?.to || "Friend";
 
   return {
-    title: "",
-    description: "",
+    title: "A Special Surprise 🎁",
+    description: "Someone made something special just for you 😱 Tap to open!",
     openGraph: {
-      title: "",
-      description: "",
+      title: "A Special Surprise 🎁",
+      description: "Tap to open your surprise now ✨",
       images: [
         {
           url: `https://newyearwish-kohl.vercel.app/api/og?to=${encodeURIComponent(
